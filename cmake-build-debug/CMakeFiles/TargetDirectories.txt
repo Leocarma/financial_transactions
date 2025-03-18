@@ -1,0 +1,3 @@
+C:/Users/Leonardo/Desktop/Lab programmazione/financial_transactions/cmake-build-debug/CMakeFiles/financial_transactions.dir
+C:/Users/Leonardo/Desktop/Lab programmazione/financial_transactions/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Leonardo/Desktop/Lab programmazione/financial_transactions/cmake-build-debug/CMakeFiles/rebuild_cache.dir
