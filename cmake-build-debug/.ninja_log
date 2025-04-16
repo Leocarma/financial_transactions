@@ -1,0 +1,13 @@
+# ninja log v6
+10	108	7640236910559585	CMakeFiles/financial_transactions.dir/Current_account.cpp.obj	836f22612fb0c5c8
+2	330	7665120785316196	build.ninja	b8ce587945291e51
+6	109	7640236910514489	CMakeFiles/financial_transactions.dir/Transaction.cpp.obj	a8d3b542a7e20425
+2	306	7640236910469410	CMakeFiles/financial_transactions.dir/main.cpp.obj	57037b6af516f774
+307	481	7640236913519772	financial_transactions.exe	b780e0fc4e434463
+5	1208	7665142622796547	CMakeFiles/financial_transactions.dir/Transaction.cpp.obj	a8d3b542a7e20425
+1208	1488	7665142634826502	financial_transactions.exe	b780e0fc4e434463
+4	310	7665143891056139	CMakeFiles/financial_transactions.dir/Transaction.cpp.obj	a8d3b542a7e20425
+312	473	7665143894128688	financial_transactions.exe	b780e0fc4e434463
+4	331	7665178329686979	CMakeFiles/financial_transactions.dir/Transaction.cpp.obj	a8d3b542a7e20425
+4	498	7665178457480259	CMakeFiles/financial_transactions.dir/Current_account.cpp.obj	836f22612fb0c5c8
+499	689	7665178462434648	financial_transactions.exe	b780e0fc4e434463
