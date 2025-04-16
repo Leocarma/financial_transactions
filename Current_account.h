@@ -7,8 +7,6 @@
 
 #endif //FINANCIAL_TRANSACTIONS_CURRENT_ACCOUNT_H
 
-#include <iostream>
-#include <fstream>
 #include <vector>
 #include <sstream>
 #include "Transaction.h"
@@ -21,15 +19,15 @@ private:
     string filename;
 
 public:
-    Current_account(const string& fname); //TODO implement this
+    explicit Current_account(const string& fname);
 
-    void addTransaction(const Transaction& t); //TODO implement this
+    void addTransaction(const Transaction& t);
 
-    double totalBalance() const; //TODO implement this
+    double totalBalance() const;
 
-    void saveFile() const; //TODO implement this
+    void saveFile() const;
 
-    void loadFile(); //TODO implement this
+    void loadFile();
 
-    void printAccountStatement() const; //TODO implement this
+    void printAccountStatement() const;
 };

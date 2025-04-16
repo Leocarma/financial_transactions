@@ -7,7 +7,6 @@
 
 #endif //FINANCIAL_TRANSACTIONS_TRANSACTION_H
 
-#include <iostream>
 #include <sstream>
 
 using namespace std;
@@ -20,19 +19,17 @@ private:
 
 public:
     Transaction() = default;
-    Transaction(string  d, string  desc, double a); //TODO implement constructor
+    Transaction(const string&  d, const string&  desc, double a);
 
-    // TODO implement getters
     string getDate() const;
     string getDescription() const;
     double getAmount() const;
 
-    // TODO implement setters
     void setDate(const string& d);
     void setDescription(const string& desc);
     void setAmount(double a);
 
-    string toString() const; //TODO implement this method
+    string toString() const;
 
-    static Transaction fromString(const string& line); //TODO implement this method
+    static Transaction fromString(const string& line);
 };
