@@ -1,16 +1,14 @@
 //
-// Created by Leonardo on 18/03/2025.
+// Created by Leonardo on 26/04/2025.
 //
 
-#ifndef FINANCIAL_TRANSACTIONS_TRANSACTION_H
-#define FINANCIAL_TRANSACTIONS_TRANSACTION_H
-
-#endif //FINANCIAL_TRANSACTIONS_TRANSACTION_H
+#ifndef LEONARDO_TRANSAZIONI_FINANZIARIE_TRANSACTION_H
+#define LEONARDO_TRANSAZIONI_FINANZIARIE_TRANSACTION_H
 
 #include <sstream>
 
 using namespace std;
-enum class TransactionType { in, out };
+enum TransactionType{ in, out};
 
 class Transaction{
 private:
@@ -29,8 +27,12 @@ public:
     void setDescription(const string& desc);
     void setAmount(double a);
     void setType(TransactionType t);
-    string typeToString(TransactionType t);
+    string typeToString();
     static TransactionType stringToType(const string& typeStr);
     string toString();
     static Transaction fromString(const string& line);
 };
+
+#endif //LEONARDO_TRANSAZIONI_FINANZIARIE_TRANSACTION_H
+
+

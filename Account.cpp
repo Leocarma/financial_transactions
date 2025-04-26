@@ -1,7 +1,3 @@
-//
-// Created by Leonardo on 18/03/2025.
-//
-
 #include "Account.h"
 #include <fstream>
 #include <iostream>
@@ -85,46 +81,91 @@ double Account::totalBalance() const {
     return total;
 }
 
-void Account::saveFile() const {
-    ofstream file(filename);
-    if (!file) {
-        cerr << "Error occurred while opening the file.\n";
-        return;
-    }
-    for (Transaction t : transactions) {
-        file << t.toString() << "\n";
-    }
-    file.close();
-}
-
-void Account::loadFile() {
-    ifstream file(filename);
-    if (!file) {
-        cerr << "Error file not found.\n";
-        return;
-    }
-    string line;
-    while (getline(file, line)) {
-        if (!line.empty()) {
-            try {
-                transactions.push_back(Transaction::fromString(line));
-            } catch (const invalid_argument& e) {
-                cerr << "Error during file load: " << e.what() << endl;
-            }
-        }
-    }
-    file.close();
-}
-
 void Account::printAccountStatement() const {
-    cout << "Account Statement of: " << accountName << " ===\n";
+    cout << "=== Account Statement of: " << accountName << " ===\n";
+    cout << left << setw(12) << "Date" 
+         << setw(25) << "Description" 
+         << setw(10) << "Amount" 
+         << "Type\n";
+    cout << string(60, '-') << "\n";
+
     for (const auto& t : transactions) {
         string sign = (t.getType() == TransactionType::in) ? "+" : "-";
-        cout << t.getDate() << " | "
-             << setw(20) << t.getDescription() << " | "
-             << sign << fixed << setprecision(2) << t.getAmount() << "€\n";
+        cout << left << setw(12) << t.getDate()
+             << setw(25) << t.getDescription()
+             << setw(10) << sign + to_string(t.getAmount()) + "$ "
+             << ((t.getType() == TransactionType::in) ? "in" : "out") << "\n";
     }
-    cout << "Total transactions: " << totalTransactions() << "€\n";
-    cout << "Total balance: " << totalBalance() << "€\n";
+
+    cout << string(60, '-') << "\n";
+    cout << "Total transactions: " << totalTransactions() << "\n";
+    cout << "Total balance: " << fixed << setprecision(2) << totalBalance() << "$\n";
 }
 
+void Account::saveAccountToFile() const {
+    ofstream file(filename);
+    if (!file) {
+        cerr << "Error occurred while opening the file for saving.\n";
+        return;
+    }
+
+    file << "AccountName: " << accountName << "\n";
+    file << "FileName: " << filename << "\n";
+
+    file << "Transactions:\n";
+    for (auto t : transactions) {
+        file << t.toString() << "\n";
+    }
+
+    file.close();
+}
+
+void Account::loadAccountFromFile(const string &fileName) {
+    ifstream file(fileName);
+    if (!file) {
+        throw runtime_error("Error occurred while opening the file for loading.");
+    }
+
+    string line;
+
+    if (getline(file, line) && line.substr(0, 12) == "AccountName:") {
+        accountName = line.substr(13);
+    } else {
+        throw runtime_error("Invalid file format (missing AccountName).");
+    }
+
+    if (getline(file, line) && line.substr(0, 9) == "FileName:") {
+        filename = line.substr(10);
+    } else {
+        throw runtime_error("Invalid file format (missing FileName).");
+    }
+
+    if (getline(file, line) && line == "Transactions:") {
+        transactions.clear(); 
+        while (getline(file, line)) {
+            if (!line.empty()) {
+                try {
+                    stringstream ss(line);
+                    string dateStr, descStr, amountStr, typeStr;
+
+                    getline(ss, dateStr, ';');
+                    getline(ss, descStr, ';');
+                    getline(ss, amountStr, ';');
+                    getline(ss, typeStr, ';');
+
+                    double amount = stod(amountStr);
+                    TransactionType type = (typeStr == "in") ? in : out;
+
+                    Transaction t(dateStr, descStr, amount, type);
+                    transactions.push_back(t);
+                } catch (const exception &e) {
+                    cerr << "Error: Invalid transaction format: " << e.what() << "\n";
+                }
+            }
+        }
+    } else {
+        cerr << "Error: Invalid file format (missing Transactions section).\n";
+    }
+
+    file.close();
+}

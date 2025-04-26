@@ -1,11 +1,9 @@
 //
-// Created by Leonardo on 18/03/2025.
+// Created by Leonardo on 26/04/2025.
 //
 
-#ifndef FINANCIAL_TRANSACTIONS_CURRENT_ACCOUNT_H
-#define FINANCIAL_TRANSACTIONS_CURRENT_ACCOUNT_H
-
-#endif //FINANCIAL_TRANSACTIONS_CURRENT_ACCOUNT_H
+#ifndef LEONARDO_TRANSAZIONI_FINANZIARIE_ACCOUNT_H
+#define LEONARDO_TRANSAZIONI_FINANZIARIE_ACCOUNT_H
 
 #include <vector>
 #include <sstream>
@@ -15,12 +13,14 @@ using namespace std;
 
 class Account {
 private:
+
     vector<Transaction> transactions;
     string filename;
     string accountName;
 
 public:
     Account(const string& fname, const string& accountName);
+    Account() {};
     string getAccountName() const;
     string getFileName() const;
     void setAccountName(const string& account);
@@ -30,7 +30,11 @@ public:
     vector<Transaction> findForDescription(const string& desc) const;
     unsigned totalTransactions() const;
     double totalBalance() const;
-    void saveFile() const;
-    void loadFile();
     void printAccountStatement() const;
+    void saveAccountToFile() const;
+    void loadAccountFromFile(const string& filename);
 };
+
+#endif //LEONARDO_TRANSAZIONI_FINANZIARIE_ACCOUNT_H
+
+

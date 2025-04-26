@@ -1,5 +1,5 @@
 //
-// Created by Leonardo on 18/03/2025.
+// Created by Leonardo on 26/04/2025.
 //
 
 #include <sstream>
@@ -31,14 +31,14 @@ Transaction::Transaction(const string& d, const string& desc, double a, Transact
     if (desc.empty()) {
         throw invalid_argument("Error, blank description!");
     }
-    if (a <= 0) {
+    if (a <= 0.0) {
         throw invalid_argument("Error, incorrect value!");
     }
 
-        date = d;
-        description = desc;
-        amount = a;
-        type = t;
+    date = d;
+    description = desc;
+    amount = a;
+    type = t;
 }
 
 string Transaction::getDate() const {
@@ -94,23 +94,23 @@ void Transaction::setType(TransactionType t) {
     type = t;
 }
 
-string Transaction::typeToString(TransactionType t) {
-    return (type == TransactionType::in) ? "entrata" : "uscita";
+string Transaction::typeToString() {
+    return (type == in) ? "in" : "out";
 }
 
-TransactionType Transaction::stringToType(const std::string &typeStr) {
-    if (typeStr == "in") return TransactionType::in;
-    if (typeStr == "out") return TransactionType::out;
+TransactionType Transaction::stringToType(const string &typeStr) {
+    if (typeStr == "in") return in;
+    if (typeStr == "out") return out;
     throw invalid_argument("Invalid transaction type: " + typeStr);
 }
 
 string Transaction::toString() {
     ostringstream oss;
-    oss << date << ";" << description << ";" << amount << typeToString(type) ;
+    oss << date << ";" << description << ";" << amount << ";" << typeToString();
     return oss.str();
 }
 
-Transaction Transaction::fromString(const std::string &line) {
+Transaction Transaction::fromString(const string &line) {
     istringstream iss(line);
     string dateStr, descriptionStr, amountStr, typeStr;
     getline(iss, dateStr, ';');
@@ -119,7 +119,3 @@ Transaction Transaction::fromString(const std::string &line) {
     getline(iss, typeStr, ';');
     return Transaction(dateStr, descriptionStr, stod(amountStr), stringToType(typeStr));
 }
-
-
-
-
