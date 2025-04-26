@@ -61,8 +61,8 @@ build CMakeFiles/financial_transactions.dir/Transaction.cpp.obj: CXX_COMPILER__f
   OBJECT_DIR = CMakeFiles\financial_transactions.dir
   OBJECT_FILE_DIR = CMakeFiles\financial_transactions.dir
 
-build CMakeFiles/financial_transactions.dir/Current_account.cpp.obj: CXX_COMPILER__financial_transactions_unscanned_Debug C$:/Users/Leonardo/Desktop/Lab$ programmazione/financial_transactions/Current_account.cpp || cmake_object_order_depends_target_financial_transactions
-  DEP_FILE = CMakeFiles\financial_transactions.dir\Current_account.cpp.obj.d
+build CMakeFiles/financial_transactions.dir/Account.cpp.obj: CXX_COMPILER__financial_transactions_unscanned_Debug C$:/Users/Leonardo/Desktop/Lab$ programmazione/financial_transactions/Account.cpp || cmake_object_order_depends_target_financial_transactions
+  DEP_FILE = CMakeFiles\financial_transactions.dir\Account.cpp.obj.d
   FLAGS = -g -std=gnu++1z -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\financial_transactions.dir
   OBJECT_FILE_DIR = CMakeFiles\financial_transactions.dir
@@ -75,7 +75,7 @@ build CMakeFiles/financial_transactions.dir/Current_account.cpp.obj: CXX_COMPILE
 #############################################
 # Link the executable financial_transactions.exe
 
-build financial_transactions.exe: CXX_EXECUTABLE_LINKER__financial_transactions_Debug CMakeFiles/financial_transactions.dir/main.cpp.obj CMakeFiles/financial_transactions.dir/Transaction.cpp.obj CMakeFiles/financial_transactions.dir/Current_account.cpp.obj
+build financial_transactions.exe: CXX_EXECUTABLE_LINKER__financial_transactions_Debug CMakeFiles/financial_transactions.dir/main.cpp.obj CMakeFiles/financial_transactions.dir/Transaction.cpp.obj CMakeFiles/financial_transactions.dir/Account.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\financial_transactions.dir

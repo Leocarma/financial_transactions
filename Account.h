@@ -13,21 +13,24 @@
 
 using namespace std;
 
-class Current_account {
+class Account {
 private:
     vector<Transaction> transactions;
     string filename;
+    string accountName;
 
 public:
-    explicit Current_account(const string& fname);
-
+    Account(const string& fname, const string& accountName);
+    string getAccountName() const;
+    string getFileName() const;
+    void setAccountName(const string& account);
+    void setFileName(const string& name);
     void addTransaction(const Transaction& t);
-
+    vector<Transaction> findForDate(const string& date) const;
+    vector<Transaction> findForDescription(const string& desc) const;
+    unsigned totalTransactions() const;
     double totalBalance() const;
-
     void saveFile() const;
-
     void loadFile();
-
     void printAccountStatement() const;
 };

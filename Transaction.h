@@ -10,26 +10,27 @@
 #include <sstream>
 
 using namespace std;
+enum class TransactionType { in, out };
 
-class Transaction {
+class Transaction{
 private:
     string date;
     string description;
-    double amount{};
+    double amount;
+    TransactionType type;
 
 public:
-    Transaction() = default;
-    Transaction(const string&  d, const string&  desc, double a);
-
+    Transaction(const string&  d, const string&  desc, double a, TransactionType t);
     string getDate() const;
     string getDescription() const;
     double getAmount() const;
-
+    TransactionType getType() const;
     void setDate(const string& d);
     void setDescription(const string& desc);
     void setAmount(double a);
-
-    string toString() const;
-
+    void setType(TransactionType t);
+    string typeToString(TransactionType t);
+    static TransactionType stringToType(const string& typeStr);
+    string toString();
     static Transaction fromString(const string& line);
 };
