@@ -1,0 +1,6 @@
+AccountName: Mario Rossi
+FileName: newaccountdata.txt
+Transactions:
+2025-04-25;Salary;1500;in
+2025-04-26;Groceries;200;out
+2025-04-27;Gym Membership;50;out

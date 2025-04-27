@@ -121,7 +121,6 @@ TEST(TransactionTest, SetType) {
 TEST(TransactionTest, TypeToString) {
     Transaction t("2024-04-25", "Stipendio", 1500.0, TransactionType::in);
     EXPECT_EQ(t.typeToString(), "in");
-    EXPECT_EQ(t.typeToString(), "out"); //non serve
 }
 
 // Test stringToType valido
@@ -138,7 +137,7 @@ TEST(TransactionTest, StringToType_Invalid) {
 // Test toString
 TEST(TransactionTest, ToString) {
     Transaction t("2024-04-25", "Stipendio", 1500.0, TransactionType::in);
-    EXPECT_EQ(t.toString(), "2024-04-25;Salary;1500;in");
+    EXPECT_EQ(t.toString(), "2024-04-25;Stipendio;1500;in");
 }
 
 // Test fromString valido

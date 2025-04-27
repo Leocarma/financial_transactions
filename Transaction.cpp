@@ -58,7 +58,7 @@ TransactionType Transaction::getType() const {
 }
 
 void Transaction::setDate(const std::string &d) {
-    regex dateFormat(R"(^\d{4}-\d{2}-\d{2}$)^)");
+    regex dateFormat(R"(^\d{4}-\d{2}-\d{2}$)");
     if (!std::regex_match(d, dateFormat)) {
         throw std::invalid_argument("Invalid date. Use YYYY-MM-DD format.");
     }
