@@ -15,10 +15,13 @@ Transaction::Transaction(const string& d, const string& desc, double a, Transact
         throw invalid_argument("Invalid date. Use YYYY-MM-DD format.");
     }
 
+    int daysInMonth[] = { 31, 28, 31, 30, 31, 30,
+                          31, 31, 30, 31, 30, 31 };
     int year, month, day;
     char sep1, sep2;
     istringstream iss(d);
     iss >> year >> sep1 >> month >> sep2 >> day;
+    bool isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 
     if (year <= 0 || month <= 0 || day <= 0) {
         throw invalid_argument("Date cannot contain negative numbers or zero.");
@@ -33,6 +36,16 @@ Transaction::Transaction(const string& d, const string& desc, double a, Transact
     }
     if (a <= 0.0) {
         throw invalid_argument("Error, incorrect value!");
+    }
+
+    if (isLeap && month == 2) {
+        if (day > 29) {
+            throw invalid_argument("Error, February has at most 29 days in a leap year.");
+        }
+    } else {
+        if (day > daysInMonth[month - 1]) {
+            throw invalid_argument("Invalid day for the given month.");
+        }
     }
 
     date = d;
@@ -59,14 +72,17 @@ TransactionType Transaction::getType() const {
 
 void Transaction::setDate(const std::string &d) {
     regex dateFormat(R"(^\d{4}-\d{2}-\d{2}$)");
-    if (!std::regex_match(d, dateFormat)) {
-        throw std::invalid_argument("Invalid date. Use YYYY-MM-DD format.");
+    if (!regex_match(d, dateFormat)) {
+        throw invalid_argument("Invalid date. Use YYYY-MM-DD format.");
     }
 
+    int daysInMonth[] = { 31, 28, 31, 30, 31, 30,
+                          31, 31, 30, 31, 30, 31 };
     int year, month, day;
     char sep1, sep2;
     istringstream iss(d);
     iss >> year >> sep1 >> month  >> sep2 >> day;
+    bool isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 
     if (year <= 0 || month <= 0 || day <= 0) {
         throw invalid_argument("Date cannot contain negative numbers or zero.");
@@ -74,6 +90,16 @@ void Transaction::setDate(const std::string &d) {
 
     if (month > 12 || day > 31) {
         throw invalid_argument("Month or day out of valid range.");
+    }
+
+    if (isLeap && month == 2) {
+        if (day > 29) {
+            throw invalid_argument("Error, February has at most 29 days in a leap year.");
+        }
+    } else {
+        if (day > daysInMonth[month - 1]) {
+            throw invalid_argument("Invalid day for the given month.");
+        }
     }
     date = d;
 }

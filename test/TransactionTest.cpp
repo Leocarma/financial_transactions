@@ -24,6 +24,8 @@ TEST(TransactionTest, Constructor_InvalidDateValues) {
     EXPECT_THROW(Transaction("2024-00-25", "Stipendio", 1000.0, in), invalid_argument);
     EXPECT_THROW(Transaction("0000-04-25", "Stipendio", 1000.0, in), invalid_argument);
     EXPECT_THROW(Transaction("2024-04-00", "Stipendio", 1000.0, in), invalid_argument);
+    EXPECT_THROW(Transaction("2025-02-29", "Stipendio", 1000.0, in), invalid_argument);
+    EXPECT_THROW(Transaction("2025-04-31", "Stipendio", 1000.0, in), invalid_argument);
 }
 
 // Test costruttore con data vuota
@@ -82,6 +84,8 @@ TEST(TransactionTest, SetDate_Valid) {
 TEST(TransactionTest, SetDate_Invalid) {
     Transaction t("2024-04-25", "Stipendio", 1500.0, in);
     EXPECT_THROW(t.setDate("01-05-2025"), invalid_argument);
+    EXPECT_THROW(t.setDate("2025-02-29"), invalid_argument);
+    EXPECT_THROW(t.setDate("2025-04-31"), invalid_argument);
 }
 
 // Test setDescription valido
